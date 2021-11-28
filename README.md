@@ -1,4 +1,4 @@
-# To start development, run:
+### To start the environment with gcc library
 ```
-start_container.sh
+docker run -it --rm askhatzhalgasov/gcc_image
 ```
