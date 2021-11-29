@@ -1,3 +1,8 @@
+/*
+ * Compile: gcc-10 -fcoroutines coroutine_serialize.cpp -lstdc++
+ *
+ * Note: order is important, otherwise may face linking error
+*/
 #include <bits/stdc++.h>
 #include <coroutine>
 
