@@ -28,7 +28,7 @@ struct Checkpoint {
 
 void serialize(Checkpoint checkpoint, string filename) {
   ostringstream stream;
-  stream.write(reinterpret_cast<char*>(checkpoint.resume_point), sizeof checkpoint.resume_point);
+  stream.write(reinterpret_cast<char*>(&checkpoint.resume_point), sizeof checkpoint.resume_point);
   char null = 0;
   stream.write(&null, 1);
 
@@ -45,10 +45,9 @@ void deserialize(Checkpoint& checkpoint, string filename) {
     return;
   }
 
-  storage.read(reinterpret_cast<char*>(checkpoint.resume_point), sizeof checkpoint.resume_point);
+  storage.read(reinterpret_cast<char*>(&checkpoint.resume_point), sizeof checkpoint.resume_point);
   storage.close();
 
-  checkpoint.resume_point_present = true;
   cout << "deserialized!\n";
 }
 
@@ -108,6 +107,13 @@ int main() {
     coroutine.resume();
 
     cout << "finished\n";
+  }
+
+  if (global_check.resume_point != nullptr) {
+    cout << "checkpointed\n";
+    char buffer[10];
+    memcpy(buffer, &global_check.resume_point, 8);
+    for (int i = 0; i < 8; i++) printf("%c\n", buffer[i]);
   }
 
   return 0;
