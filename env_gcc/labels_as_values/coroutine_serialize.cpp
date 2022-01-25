@@ -70,6 +70,8 @@ struct MyCoroutine {
       return suspend_always{};
     }
 
+    void return_void() noexcept {}
+
     void unhandled_exception() {
       abort();
     }
@@ -99,26 +101,21 @@ MyCoroutine print(int n) {
   cout << "before checkpoint\n";
   checkpoint(suspend_always{}, global_check);
   cout << "after checkpoint\n";
+  co_return;
 }
 
 int main() {
 
   deserialize(global_check, checkpoint_file); 
-
+  bool checkpointed = global_check.resume_point != nullptr;
   int n = 5;
   {
     auto coroutine = print(n);
 
-    coroutine.resume();
+    if (checkpointed == false)
+      coroutine.resume();
 
     cout << "finished\n";
-  }
-
-  if (global_check.resume_point != nullptr) {
-    cout << "checkpointed\n";
-    char buffer[10];
-    memcpy(buffer, &global_check.resume_point, 8);
-    for (int i = 0; i < 8; i++) printf("%c\n", buffer[i]);
   }
 
   return 0;
