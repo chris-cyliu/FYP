@@ -11,5 +11,6 @@ foo@bar:~$ g++-10 -fcoroutines -std=c++17 program.cpp
 - [x] finished the prototype
 - [ ] remove namespace std
 - [ ] integrate data structure which holds the variables (**how?**)
-
+- [ ] come up with use cases
+- [ ] decouple library to header file
 
