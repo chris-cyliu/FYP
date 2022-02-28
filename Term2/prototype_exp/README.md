@@ -12,5 +12,6 @@ foo@bar:~$ g++-10 -fcoroutines -std=c++17 program.cpp
 - [ ] remove namespace std
 - [ ] integrate data structure which holds the variables (**how?**)
 - [ ] come up with use cases
+- [ ] hide ```goto``` in the coroutine body 
 - [ ] decouple library to header file
 
