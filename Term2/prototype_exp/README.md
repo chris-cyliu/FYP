@@ -10,6 +10,7 @@ foo@bar:~$ g++-10 -fcoroutines -std=c++17 program.cpp
 ## TODO:
 - [x] finished the prototype
 - [ ] remove namespace std
+- [ ] memory leak, (need to call handle.destroy() to free memory)
 - [ ] integrate data structure which holds the variables (*e.g.*, template)
 - [ ] come up with use cases
 - [ ] hide ```goto``` in the coroutine body 
