@@ -54,7 +54,7 @@ struct Checkpoint {
   }
 };
 
-// helper function to extract promise
+// helper function to extract checkpoint
 template<typename PromiseType, typename CheckpointType>
 struct GetCheckpoint {
   CheckpointType* _checkpoint;
@@ -110,7 +110,7 @@ struct Task {
 };
 
 Task AlphaAsync(std::string filename) {
-  // because we can't access promise_type within coroutine body
+  // because we can't access checkpoint within coroutine body
   // this is a hook to get return point address, then jump to it
   auto checkpoint = co_await GetCheckpoint<Task::promise_type, Checkpoint> {};
   if (checkpoint->resume_point != nullptr)
