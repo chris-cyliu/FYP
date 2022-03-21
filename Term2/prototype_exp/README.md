@@ -14,5 +14,8 @@ foo@bar:~$ g++-10 -fcoroutines -std=c++17 program.cpp
 - [x] integrate data structure which holds the variables (*e.g.*, template)
 - [ ] come up with use cases
 - [ ] hide ```goto``` in the coroutine body 
-- [ ] decouple library to header file
+- [x] decouple library to header file
+- [x] integrate thread pool
+- [x] add syncronization
+- [ ] enable coroutines to accept other coroutines (think how?)  
 
