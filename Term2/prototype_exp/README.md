@@ -15,4 +15,7 @@ foo@bar:~$ g++-10 -fcoroutines -std=c++17 program.cpp
 - [ ] come up with use cases
 - [ ] hide ```goto``` in the coroutine body 
 - [ ] decouple library to header file
+- [x] integrate thread pool
+- [x] add syncronization
+- [ ] enable coroutines to accept other coroutines (think how?)  
 
